@@ -1,24 +1,22 @@
 const token = import.meta.env.VITE_TMDB_TOKEN;
 
-try {
-  if (!token) {
-    throw new Error("Manca VITE_TMDB_TOKEN nel file .env.");
-  }
+const posterBaseUrl = "https://image.tmdb.org/t/p/w500";
 
-  const url = new URL("https://api.themoviedb.org/3/movie/11");
-  url.searchParams.set("api_key", token);
+if (token) {
+    const url = new URL("https://api.themoviedb.org/3/search/movie?query=Interstellar");
+    url.searchParams.set("api_key", token);
 
-  const response = await fetch(url, {
-    headers: { accept: "application/json" },
-  });
+    const response = await fetch(url, {
+        headers: { accept: "application/json" },
+    });
 
-  if (!response.ok) {
-    throw new Error(`TMDB ha risposto con errore ${response.status}.`);
-  }
+    const data = await response.json();
+    const movie = data.results[0];
 
-  const movie = await response.json();
-  console.log(movie);
-
-} catch (error) {
-  console.error("Impossibile caricare il film:", error);
+    const container = document.getElementById("movie");
+    container.innerHTML = `
+        <h2>${movie.title}</h2>
+        <img src="${posterBaseUrl + movie.poster_path}" alt="Poster di ${movie.title}">
+    `;
+    console.log(movie);
 }
