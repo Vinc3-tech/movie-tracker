@@ -1,6 +1,5 @@
-const token = import.meta.env.VITE_TMDB_TOKEN;
-
-const posterBaseUrl = "https://image.tmdb.org/t/p/w500";
+import { token } from "./API/api.js";
+import { posterBaseUrl } from "./API/api.js";
 
 if (token) {
     const url = new URL("https://api.themoviedb.org/3/search/movie?query=Interstellar");
@@ -12,11 +11,5 @@ if (token) {
 
     const data = await response.json();
     const movie = data.results[0];
-
-    const container = document.getElementById("movie");
-    container.innerHTML = `
-        <h2>${movie.title}</h2>
-        <img src="${posterBaseUrl + movie.poster_path}" alt="Poster di ${movie.title}">
-    `;
     console.log(movie);
 }

@@ -5,13 +5,35 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Movie Tracker</title>
 
-    <link rel="stylesheet" href="src/styles/style.css">
+    <link rel="stylesheet" href="src/styles/main.css">
+    <link rel="stylesheet" href="src/styles/colors.css">
+    <link rel="stylesheet" href="src/styles/font.css">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Manrope:wght@200..800&display=swap" rel="stylesheet">
   </head>
   <body>
 
+    <nav id="navbar">
+      <div class="intro">
+        <h2 id="welcome" class="manrope-400">Welcome Vincenzo</h2>
+        <h1 id="t-dashboard" class="bebas-neue-regular">Your Dashboard</h1>
+      </div>
+    </nav>
+
+    <section id="discoverSection">
+      <h2 id="t-discover" class="manrope-500">Discover new films</h2>
+      <div class="container-films">
+        <!--film generati all'apertura-->
+      </div>
+    </section>
+
     <div id="movie"></div>
 
-    <script type="module" src="./src/main.js"></script>
+    <script type="module" src="src/main.js"></script>
+    <script type="module" src="src/API/api.js"></script>
+    <script type="module" src="src/components/card.js"></script>
 
   </body>
 </html>

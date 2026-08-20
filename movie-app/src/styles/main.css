@@ -1,0 +1,55 @@
+html, body {
+    padding: 0;
+    margin: 0;
+    scroll-behavior: smooth;
+}
+
+body{
+    background-color: var(--bg);
+    color: var(--text);
+}
+
+/* ---------------- NAVBAR --------------- */
+#navbar {
+    width: 100%;
+    height: auto;
+}
+.intro {
+    margin: var(--margin);
+}
+#welcome {
+    margin: 0;
+    font-size: 2rem;
+    font-style: italic;
+}
+#t-dashboard {
+    margin: 0;
+    font-size: 4rem;
+}
+
+/* ---------------- DISCOVER SECTION --------------- */
+#discoverSection {
+    width: auto;
+    margin: var(--margin);
+    display: flex;
+    flex-direction: column;
+    background-color: var(--bg-secondary);
+    padding: calc(var(--margin) / 3);
+    border-radius: 50px;
+}
+#t-discover {
+    margin: calc(var(--margin) / 2) 0 calc(var(--margin) / 2) calc(var(--margin));
+    font-size: 2rem;
+}
+.container-films {
+    display: flex;
+    align-items: center;
+}
+.film-discover-card {
+    aspect-ratio: 3/4;
+    width: 300px;
+    margin: calc(var(--margin) / 3);
+    border-radius: 50px;
+    background-repeat: no-repeat;
+    background-size: contain;
+}

@@ -1,0 +1,20 @@
+:root {
+    --bg: #241715;
+    --bg-secondary: #302322;
+
+    --primary: #416165;
+    --primary-light: #5C7C80;
+
+    --text: #D0CDD7;
+    --text-muted: #96939C;
+
+    --accent: #D9DBF1;
+    --accent-yellow: #E6C65C;
+
+    --error: #FF4D4D;
+    --success: #6FCF97;
+
+    
+    --margin: 2rem;
+
+}
