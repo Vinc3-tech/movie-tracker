@@ -1,15 +1,28 @@
 import { token } from "./API/api.js";
 import { posterBaseUrl } from "./API/api.js";
 
-if (token) {
-    const url = new URL("https://api.themoviedb.org/3/search/movie?query=Interstellar");
-    url.searchParams.set("api_key", token);
+const search_bar = document.querySelector(".search-bar");
+const DURATION_SEARCH_BAR_ANIMATION = 1.5;
+// dimensioni della search bar ==> width: clamp(180px, 35vw, 500px);
 
-    const response = await fetch(url, {
-        headers: { accept: "application/json" },
-    });
+gsap.set(search_bar, { width: 0, autoAlpha: 0 });
 
-    const data = await response.json();
-    const movie = data.results[0];
-    console.log(movie);
-}
+/* Ricerca di un film */
+const icon_lens = document.querySelector(".search-icon");
+
+icon_lens.addEventListener("click", () => {
+    // compare la barra di ricerca
+    gsap.to(".search-bar", {
+        autoAlpha: 1,
+        duration: .1,
+        onComplete: () => {
+            // autofocus sulla barra di ricerca
+            document.querySelector("#input-field").focus();
+        }
+    })
+    gsap.to(".search-bar", {
+        width: 500,
+        duration: DURATION_SEARCH_BAR_ANIMATION,
+        ease: "bounce",
+    })
+})
