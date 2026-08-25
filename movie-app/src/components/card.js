@@ -3,7 +3,7 @@ import { posterBaseUrl } from "../API/api.js";
 
 const DiscoverSection = document.querySelector("#discoverSection").getBoundingClientRect();
 
-async function GenerateCasualFilm() {
+export async function GenerateCasualFilm() {
     const randomPage = Math.floor(Math.random() * 500) + 1;
 
     const url = new URL("https://api.themoviedb.org/3/discover/movie");
@@ -20,20 +20,27 @@ async function GenerateCasualFilm() {
     return randomMovie;
 }
 
+export function CreateMovieCard(randomMovie) {
+    const card = document.createElement("div");
+    card.classList.add("film-discover-card");
+    card.style.background = `url("${posterBaseUrl + randomMovie.poster_path}") center center no-repeat`;
+
+    if(randomMovie.poster_path) {
+        document.querySelector(".container-films").appendChild(card);
+    }
+
+    return card;
+}
+
 document.addEventListener("DOMContentLoaded", async () => {
 
     /* generazione casuale di film al caricamento della pagina  */
     let pos_randomMovie;
     do {
-
         const randomMovie = await GenerateCasualFilm();
-
-        const card = document.createElement("div");
-        card.classList.add("film-discover-card");
-        card.style.background = `url("${posterBaseUrl + randomMovie.poster_path}") center center no-repeat`;
+        let card = CreateMovieCard(randomMovie);
 
         if(randomMovie.poster_path) {
-            document.querySelector(".container-films").appendChild(card);
             pos_randomMovie = card.getBoundingClientRect();
         }
     }
