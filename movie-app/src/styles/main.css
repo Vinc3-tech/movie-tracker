@@ -33,8 +33,6 @@ body{
     font-size: 4rem;
 }
 .cont-search {
-    background-color: var(--bg);
-    border: none;
     margin: var(--margin);
     padding: 0;
     display: flex;
@@ -56,7 +54,6 @@ body{
     min-width: 0;
     box-sizing: border-box;
     padding: 0 1rem;
-    border: 1px solid var(--accent);
     border-radius: 25px;
     color: var(--text-muted);
     overflow: hidden;
@@ -69,6 +66,7 @@ body{
     margin: 0 0 0 calc(var(--margin) / 2);
 }
 #input-field {
+    width: 100%;
     background-color: transparent;
     color: var(--text);
     border: none;
@@ -98,8 +96,11 @@ body{
     aspect-ratio: 3 / 4;
     border-radius: 16px;
 }
-/*.searchCardInfo
-.movieRate*/
+/*.searchCardInfo*/
+.movieRate {
+    display: flex;
+    align-items: center;
+}
 .searchCard:hover{
     cursor: pointer;
     background-color: var(--primary-light);
@@ -138,9 +139,7 @@ body{
     position: absolute;
     top: 50%;
     right: 0;
-    background-color: var(--bg);
     border-radius: 50%;
-    border: 1px solid var(--accent);
     display: flex;
     align-items: center;
     transition: all 300ms;

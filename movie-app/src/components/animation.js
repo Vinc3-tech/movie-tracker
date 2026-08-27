@@ -54,21 +54,33 @@ export function AnimateIcons(icon, box) {
 const barWidth = 500;
 const barHeight = 50;
 
-export function animateSearchBar(){
-    gsap.to(searchBar, {
-        autoAlpha: 1,
-        duration: .1,
-        onComplete: () => {
-            // autofocus sulla barra di ricerca
-            document.querySelector("#input-field").focus();
-        }
-    });
-    gsap.to(searchBar, {
-        width: barWidth,
-        height: barHeight,
-        duration: DURATION_SEARCH_BAR_ANIMATION,
-        ease: "back.out",
-    });
+const tl = gsap.timeline();
+tl.to(searchBar, {
+    autoAlpha: 1,
+    duration: .1,
+    onComplete: () => {
+        // autofocus sulla barra di ricerca
+        document.querySelector("#input-field").focus();
+    }
+}, 0);
+tl.fromTo("#search-label", {
+    autoAlpha: 0,
+}, {
+    autoAlpha: 1,
+    duration: .2
+}, 0)
+tl.to(searchBar, {
+    width: barWidth,
+    height: barHeight,
+    duration: DURATION_SEARCH_BAR_ANIMATION,
+    ease: "back.out",
+}, 0);
+tl.pause();
+
+export function animateSearchBar(type){
+    if (type === "normal") { tl.play(); }
+    else if (type === "reverse") { tl.reverse(); }
+    else { console.log("Errore nella stringa in input") }
 }
 
 /* -------------- animazione delle card dei film ------------ */
