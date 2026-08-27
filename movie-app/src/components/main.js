@@ -4,8 +4,10 @@ import { AnimateIcons, animateSearchBar, AnimateCard_Hover, AnimateCard_Leave } 
 import { GenerateCasualFilm, CreateMovieCard } from "./card.js";
 
 const navBar = document.querySelector("#navbar");
-const contArrow = document.querySelector("#cont-arrow");
-const arrow = document.querySelector("#svg-arrow-right");
+const contArrowRight = document.querySelector(".cont-arrow-right");
+const contArrowLeft = document.querySelector(".cont-arrow-left");
+const arrowRight = document.querySelector("#svg-arrow-right");
+const arrowLeft = document.querySelector("#svg-arrow-left");
 const iconLens = document.querySelector(".search-icon");
 const contSearch = document.querySelector(".cont-search");
 const formSearchBar = document.querySelector(".form-search-bar");
@@ -30,7 +32,8 @@ if(iconLens) {
 }
 
 // * -------- animazione hover discover section ---------- */
-AnimateIcons(arrow, contArrow);
+AnimateIcons(arrowRight, contArrowRight);
+AnimateIcons(arrowLeft, contArrowLeft);
 
 // * -------------- animazione delle card dei film ------------ */
 const filmsContainer = document.querySelector(".container-films");
@@ -43,14 +46,25 @@ filmsContainer.addEventListener("mouseout", (event) => {
 });
 
 // * ----------- creazione di nuovi film quando schiacci la freccia ----------------
-if (arrow) {
-    arrow.addEventListener("click", async () => {
+if (arrowRight) {
+    arrowRight.addEventListener("click", async () => {
         //crea un nuovo film
         const newMovie = await GenerateCasualFilm();
         const card = CreateMovieCard(newMovie);
 
-        // TODO: fare in modo che la lista di film si muova per far vedere i film generati
-
+        filmsContainer.scrollTo({
+            left: filmsContainer.scrollWidth,
+            behavior: "smooth",
+        });
+    })
+}
+if (arrowLeft) {
+    arrowLeft.addEventListener("click", async () => {
+        console.log("cliccato");
+        filmsContainer.scrollTo({
+            left: 0,
+            behavior: "smooth",
+        });
     })
 }
 
