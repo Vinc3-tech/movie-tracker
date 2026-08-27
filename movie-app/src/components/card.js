@@ -1,5 +1,5 @@
 import { token } from "../API/api.js";
-import { posterBaseUrl } from "../API/api.js";
+import { posterBaseUrlCard } from "../API/api.js";
 
 const DiscoverSection = document.querySelector("#discoverSection").getBoundingClientRect();
 
@@ -23,7 +23,7 @@ export async function GenerateCasualFilm() {
 export function CreateMovieCard(randomMovie) {
     const card = document.createElement("div");
     card.classList.add("film-discover-card");
-    card.style.background = `url("${posterBaseUrl + randomMovie.poster_path}") center center no-repeat`;
+    card.style.background = `url("${posterBaseUrlCard + randomMovie.poster_path}") center center no-repeat`;
 
     if(randomMovie.poster_path) {
         document.querySelector(".container-films").appendChild(card);

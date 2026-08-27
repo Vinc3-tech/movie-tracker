@@ -1,13 +1,38 @@
 /* --------- animazione per la barra di ricerca -------------- */
-const DURATION_SEARCH_BAR_ANIMATION = 1.5;
+const DURATION_SEARCH_BAR_ANIMATION = .8;
 const DURATION_ICONS_ANIMATION = .2;
-const search_bar = document.querySelector(".search-bar");
-const icon_lens = document.querySelector(".search-icon");
+const searchBar = document.querySelector(".form-search-bar");
 // dimensioni della search bar ==> width: clamp(180px, 35vw, 500px);
 
 // funzione per animare l'hover di tutte le icone
 export function AnimateIcons(icon, box) {
-    if(icon) {
+    if(box && icon) {
+        box.addEventListener("mouseover", () => {
+            gsap.to(box, {
+                scale: 1.3,
+                duration: DURATION_ICONS_ANIMATION,
+                ease: "power.in",
+            });
+            gsap.to(icon, {
+                scale: .6,
+                duration: DURATION_ICONS_ANIMATION,
+                ease: "power.in",
+            });
+        });
+        box.addEventListener("mouseleave", () => {
+            gsap.to(box, {
+                scale: 1,
+                duration: DURATION_ICONS_ANIMATION,
+                ease: "power.in",
+            });
+            gsap.to(icon, {
+                scale: 1,
+                duration: DURATION_ICONS_ANIMATION,
+                ease: "power.in",
+            });
+        });
+    }
+    else if (icon) {
         icon.addEventListener("mouseover", () => {
             gsap.to(icon, {
                 scale: .6,
@@ -22,31 +47,15 @@ export function AnimateIcons(icon, box) {
                 ease: "power.in",
             })
         });
-        if (box) {
-            box.addEventListener("mouseover", () => {
-                gsap.to(box, {
-                    scale: 1.3,
-                    duration: DURATION_ICONS_ANIMATION,
-                    ease: "power.in",
-                })
-            });
-            box.addEventListener("mouseleave", () => {
-                gsap.to(box, {
-                    scale: 1,
-                    duration: DURATION_ICONS_ANIMATION,
-                    ease: "power.in",
-                })
-            });
-        }
     }
 };
 
 // dimensioni della search-bar finali
-const barWidth = 500
-const barHeight = 50
+const barWidth = 500;
+const barHeight = 50;
 
 export function animateSearchBar(){
-    gsap.to(search_bar, {
+    gsap.to(searchBar, {
         autoAlpha: 1,
         duration: .1,
         onComplete: () => {
@@ -54,7 +63,7 @@ export function animateSearchBar(){
             document.querySelector("#input-field").focus();
         }
     });
-    gsap.to(search_bar, {
+    gsap.to(searchBar, {
         width: barWidth,
         height: barHeight,
         duration: DURATION_SEARCH_BAR_ANIMATION,
